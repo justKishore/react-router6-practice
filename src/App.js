@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import SingleProduct from "./pages/SingleProduct";
 import Login from "./pages/Login";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import SharedProductLayout from "./pages/SharedProductLayout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,9 +23,11 @@ function App() {
           {/* index takes parent's path */}
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="products" element={<Products />} />
-          {/* :productID is param */}
-          <Route path="products/:productID" element={<SingleProduct />} />
+          <Route path="products" element={<SharedProductLayout />}>
+            <Route index element={<Products />} />
+            {/* :productID is a url param */}
+            <Route path=":productID" element={<SingleProduct />} />
+          </Route>
           <Route path="login" element={<Login setUser={setUser}></Login>} />
           {/* Dashboard is protected */}
           <Route
