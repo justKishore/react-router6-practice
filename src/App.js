@@ -15,7 +15,7 @@ import SharedProductLayout from "./pages/SharedProductLayout";
 function App() {
   console.log("App.js running");
   const [user, setUser] = useState(null);
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(null);
   return (
     <BrowserRouter>
       {/* <nav>Our navbar</nav> */}
