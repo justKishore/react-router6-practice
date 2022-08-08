@@ -7,12 +7,15 @@ import Products from "./pages/Products";
 import Error from "./pages/Error";
 import Dashboard from "./pages/Dashboard";
 import SingleProduct from "./pages/SingleProduct";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
+import NewLogin from "./pages/NewLogin";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import SharedProductLayout from "./pages/SharedProductLayout";
 
 function App() {
+  console.log("App.js running");
   const [user, setUser] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(false);
   return (
     <BrowserRouter>
       {/* <nav>Our navbar</nav> */}
@@ -28,13 +31,21 @@ function App() {
             {/* :productID is a url param */}
             <Route path=":productID" element={<SingleProduct />} />
           </Route>
-          <Route path="login" element={<Login setUser={setUser}></Login>} />
+          <Route
+            path="login"
+            element={
+              <NewLogin
+                setUser={setUser}
+                setLoginStatus={setLoginStatus}
+              ></NewLogin>
+            }
+          />
           {/* Dashboard is protected */}
           <Route
             path="dashboard"
             element={
-              <ProtectedRoute user={user}>
-                <Dashboard user={user} />
+              <ProtectedRoute user={user} loginStatus={loginStatus}>
+                <Dashboard user={user} loginStatus={loginStatus} />
               </ProtectedRoute>
             }
           />

@@ -4,6 +4,7 @@
 import { NavLink } from "react-router-dom";
 
 const StyledNavBar = () => {
+  console.log("StyledNavbar.js running");
   return (
     <nav className="navbar">
       <NavLink

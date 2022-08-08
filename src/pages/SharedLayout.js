@@ -5,6 +5,7 @@ import StyledNavBar from "../components/StyledNavBar";
 
 // Outlet for shared componets to nest routes
 const SharedLayout = () => {
+  console.log("SharedLayout.js running");
   return (
     <>
       <StyledNavBar />

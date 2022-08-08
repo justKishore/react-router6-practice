@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import products from "../data";
 // useParams() returns keyboard,value pair of params from url
 const SingleProduct = () => {
+  console.log("SingleProduct.js running");
   console.log(useParams());
   const { productID } = useParams();
   const product = products.find((product) => product.id === productID);

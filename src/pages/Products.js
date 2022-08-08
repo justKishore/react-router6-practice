@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import products from "../data";
 const Products = () => {
+  console.log("Product.js running");
   return (
     //<section className="section">
     <div className="products">
