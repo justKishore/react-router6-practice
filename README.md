@@ -1,1 +1,2 @@
-This is rough branch, please check out main branch
+Branch to check login and logout
+used local storage to achive this

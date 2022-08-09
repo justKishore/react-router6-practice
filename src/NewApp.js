@@ -16,26 +16,39 @@ import LoginError from "./pages/LoginError";
 class App extends Component {
   state = {
     // the componet that owns a piece of the state, should be the one modifying it
-    user: [{ name: "", email: "" }],
+    name: "",
+    email: "",
     loginStatus: false,
   };
-  handlesetUser = (name, email) => {
-    const user = [...this.state.user];
-    user.name = name;
-    user.email = email;
+  handlesetUser = (loginName, loginEmail) => {
+    // const user = [...this.state.user];
+    const name = loginName;
+    const email = loginEmail;
     const loginStatus = true;
-    this.setState({ user, loginStatus });
+    localStorage.setItem("name", name);
+    localStorage.setItem("loginStatus", true);
+    this.setState({ name, email, loginStatus });
+  };
+  handleLogOut = () => {
+    localStorage.clear();
+    const name = "";
+    const email = "";
+    const loginStatus = false;
+    // localStorage.setItem("loginStatus", false);
+    this.setState({ name, email, loginStatus });
   };
   componentDidMount() {
-    console.log("component did mount");
     const currentState = this.state.loginStatus;
+    console.log("component did mount", currentState);
     if (currentState === true) {
+      // localStorage.setItem("loginstatus", "true");
       this.setState({ loginStatus: true });
     } else {
+      // localStorage.setItem("loginstatus", "false");
       this.setState({ loginStatus: false });
     }
   }
-  // handleSetStatus = () => {};
+  handleSetStatus = () => {};
   render() {
     console.log("App.js running");
     // const [user, setUser] = useState(null);
@@ -69,15 +82,19 @@ class App extends Component {
               path="dashboard"
               element={
                 <ProtectedRoute
-                  user={this.state.user}
+                  name={this.state.name}
                   loginStatus={this.state.loginStatus}
+                  setLogout={this.handleLogOut}
                 >
-                  <Dashboard user={this.state.user} />
+                  <Dashboard
+                    name={localStorage.getItem("name")}
+                    setLogout={this.handleLogOut}
+                  />
                 </ProtectedRoute>
               }
             />
-            {/* Handle error pages */}
             <Route path="/access-denied" element={<LoginError />} />
+            {/* Handle error pages */}
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
