@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NewLogin = ({ setUser, setLoginStatus }) => {
+const NewLogin = ({ setUser }) => {
   console.log("NewLogin.js running");
   //   console.log("type is", typeof setLoginStatus);
   const [formName, setName] = useState("");
@@ -14,8 +14,7 @@ const NewLogin = ({ setUser, setLoginStatus }) => {
     console.log(formName, formEmail);
     if (!formName || !formEmail) return;
     status = true;
-    setUser({ name: formName, email: formEmail });
-    setLoginStatus({ status: status });
+    setUser(formName, formEmail);
     navigate("/dashboard");
   };
 

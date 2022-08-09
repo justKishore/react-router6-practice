@@ -11,6 +11,7 @@ import SingleProduct from "./pages/SingleProduct";
 import NewLogin from "./pages/NewLogin";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import SharedProductLayout from "./pages/SharedProductLayout";
+import LoginError from "./pages/LoginError";
 
 function App() {
   console.log("App.js running");
@@ -50,6 +51,7 @@ function App() {
             }
           />
           {/* Handle error pages */}
+          <Route path="/access-denied" element={<LoginError />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
